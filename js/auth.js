@@ -50,8 +50,8 @@ loginForm.addEventListener("submit", (event) => {
     Swal.fire({
       icon: "warning",
       title: "Уупс...",
-      html: "Вы не заполнили поле <b>Login</b>",
-      timer: 5000,
+      html: "Повторите авторизацию!",
+      timer: 3000,
     });
   } else {
     localStorage.setItem("user", JSON.stringify(user));

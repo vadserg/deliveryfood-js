@@ -219,6 +219,13 @@ button {
   margin-bottom: 44px;
 }
 
+.link-back {
+  text-decoration: none;
+  color: #1890ff;
+  margin-right: 20px;
+  font-size: 16px;
+}
+
 .section-title {
   font-style: normal;
   font-weight: bold;

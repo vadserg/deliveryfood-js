@@ -1,26 +1,64 @@
-const restaurant = 2
+const cardsMenu = document.querySelector('.cards-menu')
 
-const restaurantName = document.querySelector('.restaurant-title')
-const restaurantRating = document.querySelector('.rating')
-const restaurantPrice = document.querySelector('.price')
-const restaurantCategory = document.querySelector('.category')
+const changeTitle = (restaurant) => {
+  const restaurantTitle = document.querySelector('.restaurant-title')
+  const restaurantRating = document.querySelector('.rating')
+  const restaurantPrice = document.querySelector('.price')
+  const restaurantCategory = document.querySelector('.category')
 
-const renderItems = (data) => {
-  for (let key in data) {
-    console.log(key, ":", data[key])
-  }
-
-  restaurantName.textContent = data.name
-  restaurantRating.textContent = data.stars
-  restaurantPrice.textContent = "от " + data.price + " руб"
-  restaurantCategory.textContent = data.kitchen
+  restaurantTitle.textContent = restaurant.name
+  restaurantRating.textContent = restaurant.stars
+  restaurantPrice.textContent = restaurant.price
+  restaurantCategory.textContent = restaurant.kitchen
 }
 
-fetch(`https://test-65e8a-default-rtdb.firebaseio.com/db/partners/${restaurant}.json`)
-  .then((response) => response.json())
-  .then((data) => {
-    renderItems(data)
+const renderItems = (data) => {
+  data.forEach(({ description, id, image, name, price }) => {
+    const card = document.createElement('div')
+
+    card.classList.add('card')
+
+    card.innerHTML = `
+        <img
+          src="${image}"
+          alt="${name}"
+          class="card-image"
+        />
+        <div class="card-text">
+          <div class="card-heading">
+            <h3 class="card-title card-title-reg">${name}</h3>
+          </div>
+          <div class="card-info">
+            <div class="ingredients">
+              ${description}
+            </div>
+          </div>
+          <div class="card-buttons">
+            <button class="button button-primary button-add-cart">
+              <span class="button-card-text">В корзину</span>
+              <span class="button-cart-svg"></span>
+            </button>
+            <strong class="card-price-bold">${price} ₽</strong>
+          </div>
+        </div>
+    `
+
+    cardsMenu.append(card)
   })
-  .catch((error) => {
-    console.log(error)
-  })
+}
+
+const restaurant = JSON.parse(localStorage.getItem('restaurant'))
+
+if (restaurant) {
+  fetch(`https://test-65e8a-default-rtdb.firebaseio.com/db/${restaurant.products}`)
+    .then((response) => response.json())
+    .then((data) => {
+      renderItems(data)
+      changeTitle(restaurant)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+} else {
+  window.location.href = '/'
+}
