@@ -1,16 +1,18 @@
-const cardsRestaurants = document.querySelector('.cards-restaurants')
+const partners = () => {
 
-const renderItems = (data) => {
-  data.forEach((item) => {
-    const { image, kitchen, name, price, products, stars, time_of_delivery } = item
-    const a = document.createElement('a')
+  const cardsRestaurants = document.querySelector('.cards-restaurants')
 
-    a.setAttribute('href', '/restaurant.html')
-    a.classList.add('card', 'card-restaurant')
-    //a.products = products
-    a.dataset.products = products
+  const renderItems = (data) => {
+    data.forEach((item) => {
+      const { image, kitchen, name, price, products, stars, time_of_delivery } = item
+      const a = document.createElement('a')
 
-    a.innerHTML = `
+      a.setAttribute('href', '/restaurant.html')
+      a.classList.add('card', 'card-restaurant')
+      //a.products = products
+      a.dataset.products = products
+
+      a.innerHTML = `
       <img
         src="${image}"
         alt="${name}"
@@ -29,29 +31,32 @@ const renderItems = (data) => {
       </div>
     `
 
-    a.addEventListener('click', e => {
-      e.preventDefault()
+      a.addEventListener('click', e => {
+        e.preventDefault()
 
-      localStorage.setItem('restaurant', JSON.stringify(item))
+        localStorage.setItem('restaurant', JSON.stringify(item))
 
-      if (localStorage.getItem('user')) {
-        window.location.href = '/restaurant.html'
-      } else {
-        modalAuth.style.display = 'flex'
-      }
+        if (localStorage.getItem('user')) {
+          window.location.href = '/restaurant.html'
+        } else {
+          modalAuth.style.display = 'flex'
+        }
+      })
+
+      cardsRestaurants.append(a)
     })
 
-    cardsRestaurants.append(a)
-  })
 
+  }
 
+  fetch('https://test-65e8a-default-rtdb.firebaseio.com/db/partners.json')
+    .then((response) => response.json())
+    .then((data) => {
+      renderItems(data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
-fetch('https://test-65e8a-default-rtdb.firebaseio.com/db/partners.json')
-  .then((response) => response.json())
-  .then((data) => {
-    renderItems(data)
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+partners()

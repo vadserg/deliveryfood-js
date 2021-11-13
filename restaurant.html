@@ -8,22 +8,23 @@
       href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=cyrillic"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.css"
       integrity="sha256-YSIvm6MoLK0/S3MKxMMBEMUq39D2Z6E62AcPUdCSI0Q="
       crossorigin="anonymous"
     />
-    <script src="./js/auth.js" defer></script>
-    <script src="./js/menu.js" defer></script>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <script
       src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js"
       integrity="sha256-woUp6Fml4yOFjPspg3aDzeE6YeVBe0qGZRqp9lWHf9o="
       crossorigin="anonymous"
       defer
     ></script>
+    <script src="./js/auth.js" defer></script>
+    <script src="./js/menu.js" defer></script>
+    <script src="./js/cart.js" defer></script>
   </head>
 
   <body>
@@ -111,58 +112,31 @@
         </div>
         <!-- /.modal-header -->
         <div class="modal-body">
-          <div class="food-row">
-            <span class="food-name">Ролл угорь стандарт</span>
-            <strong class="food-price">250 ₽</strong>
-            <div class="food-counter">
-              <button class="counter-button">-</button>
-              <span class="counter">1</span>
-              <button class="counter-button">+</button>
-            </div>
-          </div>
-          <!-- /.foods-row -->
-          <div class="food-row">
-            <span class="food-name">Ролл угорь стандарт</span>
-            <strong class="food-price">250 ₽</strong>
-            <div class="food-counter">
-              <button class="counter-button">-</button>
-              <span class="counter">1</span>
-              <button class="counter-button">+</button>
-            </div>
-          </div>
-          <!-- /.foods-row -->
-          <div class="food-row">
-            <span class="food-name">Ролл угорь стандарт</span>
-            <strong class="food-price">250 ₽</strong>
-            <div class="food-counter">
-              <button class="counter-button">-</button>
-              <span class="counter">1</span>
-              <button class="counter-button">+</button>
-            </div>
-          </div>
-          <!-- /.foods-row -->
-          <div class="food-row">
-            <span class="food-name">Ролл угорь стандарт</span>
-            <strong class="food-price">250 ₽</strong>
-            <div class="food-counter">
-              <button class="counter-button">-</button>
-              <span class="counter">1</span>
-              <button class="counter-button">+</button>
-            </div>
-          </div>
-          <!-- /.foods-row -->
+          <!-- сюда рендерятся все элементы корзины -->>
         </div>
-        <!-- /.modal-body -->
+
         <div class="modal-footer">
           <span class="modal-pricetag">1250 ₽</span>
           <div class="footer-buttons">
-            <button class="button button-primary">Оформить заказ</button>
+            <button class="button button-primary button-accept">
+              Оформить заказ
+            </button>
             <button class="button clear-cart">Отмена</button>
           </div>
         </div>
         <!-- /.modal-footer -->
       </div>
       <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal modal-clear">
+      <div class="modal-clear-dialog">
+        <h3>Очистить корзину?</h3>
+        <div class="footer-buttons">
+          <button class="button button-primary button-clear">ДА</button>
+          <button class="button button-escape">Отмена</button>
+        </div>
+      </div>
     </div>
 
     <div class="modal-auth">

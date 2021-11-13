@@ -1,64 +1,72 @@
-const buttonAuth = document.querySelector(".button-auth");
-const buttonOut = document.querySelector(".button-out");
-const modalAuth = document.querySelector(".modal-auth");
-const closeAuth = document.querySelector(".close-auth");
-const loginForm = document.querySelector("#loginForm");
-const buttonLogin = document.querySelector(".button-login");
-const inputLogin = document.querySelector("#login");
-const inputPassword = document.querySelector("#password");
-const userName = document.querySelector(".user-name");
+const auth = () => {
 
-const login = (user) => {
-  buttonAuth.style.display = "none";
-  buttonOut.style.display = "block";
-  userName.style.display = "block";
-  userName.textContent = user.login;
-  modalAuth.style.display = "none";
-};
+  const buttonAuth = document.querySelector(".button-auth");
+  const buttonOut = document.querySelector(".button-out");
+  const modalAuth = document.querySelector(".modal-auth");
+  const closeAuth = document.querySelector(".close-auth");
+  const loginForm = document.querySelector("#loginForm");
+  const buttonLogin = document.querySelector(".button-login");
+  const inputLogin = document.querySelector("#login");
+  const inputPassword = document.querySelector("#password");
+  const userName = document.querySelector(".user-name");
+  const buttonCart = document.querySelector(".button-cart");
 
-const logout = (user) => {
-  buttonAuth.style.display = "block";
-  buttonOut.style.display = "none";
-  userName.style.display = "none";
-  userName.textContent = "";
-  modalAuth.style.display = "none";
-
-  localStorage.removeItem("user");
-};
-
-buttonAuth.onclick = () => {
-  modalAuth.style.display = "flex";
-};
-
-closeAuth.onclick = () => {
-  modalAuth.style.display = "none";
-};
-
-buttonOut.onclick = () => {
-  logout();
-};
-
-loginForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const user = {
-    login: inputLogin.value,
-    password: inputPassword.value,
+  const login = (user) => {
+    buttonAuth.style.display = "none";
+    buttonOut.style.display = "block";
+    buttonCart.style.display = "block";
+    userName.style.display = "block";
+    userName.textContent = user.login;
+    modalAuth.style.display = "none";
   };
 
-  if (!user.login) {
-    Swal.fire({
-      icon: "warning",
-      title: "Уупс...",
-      html: "Повторите авторизацию!",
-      timer: 3000,
-    });
-  } else {
-    localStorage.setItem("user", JSON.stringify(user));
-    login(user);
-  }
-});
+  const logout = (user) => {
+    buttonAuth.style.display = "block";
+    buttonOut.style.display = "none";
+    buttonCart.style.display = "none";
+    userName.style.display = "none";
+    userName.textContent = "";
+    modalAuth.style.display = "none";
 
-if (localStorage.getItem("user")) {
-  login(JSON.parse(localStorage.getItem("user")));
+    localStorage.removeItem("user");
+  };
+
+  buttonAuth.onclick = () => {
+    modalAuth.style.display = "flex";
+  };
+
+  closeAuth.onclick = () => {
+    modalAuth.style.display = "none";
+  };
+
+  buttonOut.onclick = () => {
+    logout();
+  };
+
+  loginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const user = {
+      login: inputLogin.value,
+      password: inputPassword.value,
+    };
+
+    if (!user.login) {
+      Swal.fire({
+        icon: "warning",
+        title: "Уупс...",
+        html: "Повторите авторизацию!",
+        timer: 3000,
+      });
+    } else {
+      localStorage.setItem("user", JSON.stringify(user));
+      login(user);
+    }
+  });
+
+  if (localStorage.getItem("user")) {
+    login(JSON.parse(localStorage.getItem("user")));
+  }
 }
+
+auth()

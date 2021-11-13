@@ -434,6 +434,15 @@ button {
   display: flex;
 }
 
+.modal-clear-dialog {
+  max-width: 320px;
+  width: 95%;
+  background: #ffffff;
+  border-radius: 5px;
+  margin: auto;
+  padding: 40px 45px;
+}
+
 .modal-dialog {
   max-width: 780px;
   width: 95%;
